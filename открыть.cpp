@@ -39,7 +39,7 @@
         }
         else
         {
-            cerr << "Error: Could not open directory " << argv[1] << endl;
+            cerr << "Error: Could not open directory "  << endl;
             return 1;
         }
 
