@@ -21,7 +21,7 @@
                     continue;
 
                 // Получаем полный путь файла
-                string path = "C://Users//Nikita//Desktop//robs";
+                string path = "PATH";
                 path += "/";
                 path += ent->d_name;
 
