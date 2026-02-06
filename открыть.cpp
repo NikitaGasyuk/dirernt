@@ -9,8 +9,11 @@ int main()
 {
 
     // Открываем папку с изображениями
+    // переменная в которую будет записана открытая директория(путь к файлу) 
     DIR* dir;
+    // структура содержащая информацию об элементе директории
     struct dirent* ent;
+    // проверка на то что путь к открываемой директории существует или правильно указан
     if ((dir = opendir("PATH")) != NULL)
     {
         // Цикл по всем файлам в папке
@@ -21,28 +24,33 @@ int main()
             {
                 continue;
             }
-                // Получаем полный путь файла
+            // Получаем полный путь файла
             string path = "PATH";
             path += "/";
             path += ent->d_name;
 
-                // Открываем изображение
+            // инициализируем массив mat который хранит изображения
+            // получаемые изображения записываются в него
             Mat image = imread(path, IMREAD_UNCHANGED);
+            // проверяем получилось ли открыть у нас изображение
             if (image.empty())
-                {
-                    cerr << "Error: Could not read file " << path << endl;
-                    continue;
-                }
-                imshow("Image", image);
-                waitKey(0);
+            {
+                 cerr << "Error: Could not read file " << path << endl;
+                continue;
             }
+            // выводим изображение на экран
+            imshow("Image", image);
+            // устанавливаем время нажатия пользователем клавищ, в данном случае время ожидания не ограничено
+            waitKey(0);
+        }
+            // закрываем папку к оторой обращались для просмотра изображений
             closedir(dir);
-        }
-        else
-        {
-            cerr << "Error: Could not open directory "  << endl;
-            return 1;
-        }
-
+    }
+     else
+    {
+        cerr << "Error: Could not open directory "  << endl;
+         return 1;
+    }
+    
         return 0;
     }
