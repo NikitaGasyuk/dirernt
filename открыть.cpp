@@ -11,7 +11,7 @@
         // Открываем папку с изображениями
         DIR* dir;
         struct dirent* ent;
-        if ((dir = opendir("C://Users//Nikita//Desktop//robs")) != NULL)
+        if ((dir = opendir("PATH")) != NULL)
         {
             // Цикл по всем файлам в папке
             while ((ent = readdir(dir)) != NULL)
