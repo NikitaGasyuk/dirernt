@@ -50,6 +50,7 @@ int main()
     }
      else
     {
+        // вывод ошибки если с директорией что-то не так
         cerr << "Error: Could not open directory "  << endl;
          return 1;
     }
