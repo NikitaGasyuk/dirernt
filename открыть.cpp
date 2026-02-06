@@ -2,32 +2,33 @@
 #include <dirent.h>
 #include <opencv2/opencv.hpp>
 
-    using namespace std;
-    using namespace cv;
+using namespace std;
+using namespace cv;
 
-    int main()
+int main()
+{
+
+    // Открываем папку с изображениями
+    DIR* dir;
+    struct dirent* ent;
+    if ((dir = opendir("PATH")) != NULL)
     {
-
-        // Открываем папку с изображениями
-        DIR* dir;
-        struct dirent* ent;
-        if ((dir = opendir("PATH")) != NULL)
+        // Цикл по всем файлам в папке
+        while ((ent = readdir(dir)) != NULL)
         {
-            // Цикл по всем файлам в папке
-            while ((ent = readdir(dir)) != NULL)
+            // Исключаем папки . и ..
+            if (strcmp(ent->d_name, ".") == 0 || strcmp(ent->d_name, "..") == 0)
             {
-                // Исключаем папки . и ..
-                if (strcmp(ent->d_name, ".") == 0 || strcmp(ent->d_name, "..") == 0)
-                    continue;
-
+                continue;
+            }
                 // Получаем полный путь файла
-                string path = "PATH";
-                path += "/";
-                path += ent->d_name;
+            string path = "PATH";
+            path += "/";
+            path += ent->d_name;
 
                 // Открываем изображение
-                Mat image = imread(path, IMREAD_UNCHANGED);
-                if (image.empty())
+            Mat image = imread(path, IMREAD_UNCHANGED);
+            if (image.empty())
                 {
                     cerr << "Error: Could not read file " << path << endl;
                     continue;
