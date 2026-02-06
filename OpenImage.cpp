@@ -1,5 +1,7 @@
 #include <iostream>
+// подключаемый файл для работы с директорией
 #include <dirent.h>
+// подключаемый файл для работы с opencv
 #include <opencv2/opencv.hpp>
 
 using namespace std;
